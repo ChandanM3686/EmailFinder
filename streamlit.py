@@ -158,7 +158,7 @@ def search_contacts(domain, designation, location="", limit=10):
 # STREAMLIT UI
 # -------------------------
 
-st.title("🔍 Apollo.io Contact Finder")
+st.title("🔍 Contact Finder")
 
 with st.form("search_form"):
     domain = st.text_input("🔍 Enter company domain (e.g. tcs.com)", "")
@@ -184,3 +184,4 @@ if submitted:
                 st.warning("❌ No matching people found.")
         except Exception as e:
             st.error(f"🚨 Error: {e}")
+
