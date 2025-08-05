@@ -40,12 +40,7 @@ def search_contacts(domain, designation, location="", limit=10):
     }
 
     if location:
-        if "," not in location:
-            country = st.text_input(f"📍 Enter country for {location}:", "India")
-            formatted_location = f"{location}, {country}"
-        else:
-            formatted_location = location
-
+        formatted_location = location.strip()
         st.write(f"Using formatted location: `{formatted_location}`")
         params["person_locations[]"] = formatted_location
         params["organization_locations[]"] = formatted_location
@@ -163,12 +158,12 @@ def search_contacts(domain, designation, location="", limit=10):
 # STREAMLIT UI
 # -------------------------
 
-st.title("🔍Contact Finder")
+st.title("🔍 Apollo.io Contact Finder")
 
 with st.form("search_form"):
     domain = st.text_input("🔍 Enter company domain (e.g. tcs.com)", "")
     designation = st.text_input("🎯 Enter a job title keyword (e.g. HR Manager)", "")
-    location = st.text_input("📍 Optional: Enter location (e.g. Mumbai)", "")
+    location = st.text_input("🌍 Optional: Enter location (e.g. Mumbai or New York)", "")
     limit = st.number_input("🔢 How many results to return? (max 10)", min_value=1, max_value=10, value=5)
     submitted = st.form_submit_button("🚀 Find Contacts")
 
@@ -189,4 +184,3 @@ if submitted:
                 st.warning("❌ No matching people found.")
         except Exception as e:
             st.error(f"🚨 Error: {e}")
-
